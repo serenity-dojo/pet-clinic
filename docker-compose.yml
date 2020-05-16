@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  petclinic-api:
+    image: serenitydojo/serenity-petclinic-api
+    build:
+      context: ./petclinic-api
+      dockerfile: Dockerfile
+    ports:
+      - "9966:9966"
+  petclinic-ui:
+    image: serenitydojo/serenity-petclinic-ui
+    depends_on:
+      - "petclinic-api"
+#    command: ["./wait-for-it.sh", "petclinic-api:9966"]
+    build:
+      context: ./petclinic-ui
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
