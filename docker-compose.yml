@@ -8,11 +8,17 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9966:9966"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9966/petclinic/api/pets"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+#      start_period: 40s
+
   petclinic-ui:
     image: serenitydojo/serenity-petclinic-ui
     depends_on:
-      - "petclinic-api"
-#    command: ["./wait-for-it.sh", "petclinic-api:9966"]
+      - petclinic-api
     build:
       context: ./petclinic-ui
       dockerfile: Dockerfile

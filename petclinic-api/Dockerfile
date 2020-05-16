@@ -13,20 +13,19 @@ FROM maven:3.6.3-openjdk-11 AS MAVEN_TOOL_CHAIN
 COPY pom.xml /tmp/
 COPY src /tmp/src/
 WORKDIR /tmp/
-RUN mvn package
+RUN mvn package -DskipTests
+RUN ls /tmp/target
 
 #
 # BUILD AN IMAGE TO RUN THE SPRING-BOOT EXECUTABLE JAR
 #
 FROM openjdk:12-jdk-alpine
-FROM openjdk:12-jdk-alpine
-COPY --from=MAVEN_TOOL_CHAIN /tmp/target/*.jar target/
 
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} petclinic-api.jar
+COPY --from=MAVEN_TOOL_CHAIN /tmp/target/petclinic-api-*.jar /dist/petclinic-api.jar
+RUN ls -al /dist
 EXPOSE 9966
-ENTRYPOINT ["java","-jar","/petclinic-api.jar"]
+ENTRYPOINT ["java","-jar","/dist/petclinic-api.jar"]
 
 
