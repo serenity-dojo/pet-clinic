@@ -11,6 +11,7 @@
 #
 FROM maven:3.6.3-openjdk-11 AS MAVEN_TOOL_CHAIN
 COPY pom.xml /tmp/
+COPY healthcheck.js /tmp/
 COPY src /tmp/src/
 WORKDIR /tmp/
 RUN mvn package -DskipTests
@@ -26,5 +27,4 @@ USER spring:spring
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/petclinic-api-*.jar /dist/petclinic-api.jar
 EXPOSE 9966
 ENTRYPOINT ["java","-jar","/dist/petclinic-api.jar"]
-
 
