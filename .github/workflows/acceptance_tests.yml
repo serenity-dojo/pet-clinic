@@ -24,7 +24,7 @@ jobs:
 #
 #    steps:
 #      - uses: actions/checkout@v2
-#      - name: Start the PetClinic application
+#      - name: Run the acceptance tests
 #        working-directory: petclinic-acceptance-tests
 #        run: mvn clean verify
 
