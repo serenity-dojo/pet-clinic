@@ -1,0 +1,20 @@
+stages:
+  - build
+  - test
+
+image: alpine
+
+build_application:
+  stage: build
+  script:
+    - docker-compose build
+
+start_app:
+  stage: test
+  script:
+    - docker-compose up -d
+
+acceptance_tests:
+  stage: test
+  script:
+    - curl -f http://localhost:8080/petclinic
