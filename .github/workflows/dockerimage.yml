@@ -8,32 +8,34 @@ on:
 
 jobs:
 
-  start_api:
+  start_app:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the PetClinic API
-      working-directory: petclinic-api
+    - name: Build and launch the PetClinic app
+#      working-directory: petclinic-api
       run: |
-        docker build . --file Dockerfile --tag serenitydojo/serenity-petclinic-api:$(date +%s)
-        docker run -p 9966:9966 --detach --name petclinic-api serenitydojo/serenity-petclinic-api:$(date +%s)
-
-  start_ui:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build the PetClinic UI
-        working-directory: petclinic-ui
-        run: |
-          docker build . --file Dockerfile --tag serenitydojo/serenity-petclinic-ui:$(date +%s)
-          docker run -p 8080:80 --detach --name petclinic-ui serenitydojo/serenity-petclinic-ui:$(date +%s)
+        docker-compose build
+        docker-compose up -d
+#        docker build . --file Dockerfile --tag serenitydojo/serenity-petclinic-api:$(date +%s)
+#        docker run -p 9966:9966 --detach --name petclinic-api serenitydojo/serenity-petclinic-api:$(date +%s)
+#
+#  start_ui:
+#
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Build the PetClinic UI
+#        working-directory: petclinic-ui
+#        run: |
+#          docker build . --file Dockerfile --tag serenitydojo/serenity-petclinic-ui:$(date +%s)
+#          docker run -p 8080:80 --detach --name petclinic-ui serenitydojo/serenity-petclinic-ui:$(date +%s)
 
   acceptance_tests:
-    needs: [start_api, start_ui]
+    needs: [start_app]
 
     runs-on: ubuntu-latest
 
