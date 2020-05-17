@@ -1,10 +1,6 @@
 name: PetClinic Acceptance Tests
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
 
@@ -13,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build and launch the PetClinic app
-      run: |
-        docker-compose build
-        docker-compose up -d
+      - uses: actions/checkout@v2
+      - name: Build and launch the PetClinic app
+        run: |
+          docker-compose build
+          docker-compose up -d
 
 #  TODO: Uncomment this section when you have added the petclinic-acceptance-tests module to your project
 #
