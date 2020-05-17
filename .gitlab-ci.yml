@@ -1,12 +1,16 @@
-before_script:
-  - apt-get update -qq && apt-get install -y -qq nodejs
 
 stages:
   - build
   - test
 
-image: alpine
+image:
+  name: docker/compose:latest
+  entrypoint: ["/bin/sh", "-c"]
 
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+  
 build_api:
   stage: build
   script:
