@@ -24,7 +24,6 @@ FROM openjdk:12-jdk-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/petclinic-api-*.jar /dist/petclinic-api.jar
-RUN ls -al /dist
 EXPOSE 9966
 ENTRYPOINT ["java","-jar","/dist/petclinic-api.jar"]
 
