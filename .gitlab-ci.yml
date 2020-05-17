@@ -1,18 +1,25 @@
+before_script:
+  - apt-get update -qq && apt-get install -y -qq nodejs
+
 stages:
   - build
   - test
 
 image: alpine
 
-build_application:
+build_api:
   stage: build
   script:
-    - docker-compose build
+    - cd petclinic-api
+    - docker build -t serenitydojo/serenity-petclinic-api .
+    - docker run -p 9966:9966 --detach --name petclinic-api serenitydojo/serenity-petclinic-api
 
-start_app:
-  stage: test
+build_ui:
+  stage: build
   script:
-    - docker-compose up -d
+    - cd petclinic-ui
+    - docker build -t serenitydojo/serenity-petclinic-ui .
+    - docker run -p 8080:80 --detach --name petclinic-ui serenitydojo/serenity-petclinic-ui
 
 acceptance_tests:
   stage: test
