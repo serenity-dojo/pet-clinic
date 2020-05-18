@@ -9,7 +9,7 @@ Feature: View all the vets
     When he views the vets in his clinic
     Then he should see the name of each vet in the clinic
 
-  Scenario: View the full list of vets
+  Scenario: View the specialities of each vet
     Given Peter is a Pet Clinic owner
     When he views the vets in his clinic
     Then he should see each of the following vet specialities
