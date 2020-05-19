@@ -1,4 +1,4 @@
-package petclinic.vets;
+package petclinic.actions.vets;
 
 import java.util.List;
 

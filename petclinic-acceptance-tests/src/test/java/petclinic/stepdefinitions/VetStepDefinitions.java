@@ -9,7 +9,7 @@ import net.serenitybdd.screenplay.Actor;
 import org.assertj.core.api.SoftAssertions;
 import petclinic.actions.navigation.MainMenuItem;
 import petclinic.actions.navigation.Navigate;
-import petclinic.vets.Vet;
+import petclinic.actions.vets.Vet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import java.util.Map;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.*;
-import static petclinic.vets.VetQuestions.specialitiesFor;
-import static petclinic.vets.VetQuestions.vetNamesDisplayed;
+import static petclinic.actions.vets.VetQuestions.specialitiesFor;
+import static petclinic.actions.vets.VetQuestions.vetNamesDisplayed;
 
 public class VetStepDefinitions {
     @Given("{actor} is a Pet Clinic owner")

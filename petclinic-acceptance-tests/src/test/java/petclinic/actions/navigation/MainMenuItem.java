@@ -1,10 +1,7 @@
 package petclinic.actions.navigation;
 
 import net.serenitybdd.screenplay.Performable;
-import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
-
-import java.lang.management.GarbageCollectorMXBean;
 
 import static petclinic.actions.navigation.MenuElement.nestedMenu;
 import static petclinic.actions.navigation.MenuElement.topLevelMenu;

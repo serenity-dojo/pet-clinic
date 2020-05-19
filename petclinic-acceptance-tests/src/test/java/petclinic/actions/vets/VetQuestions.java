@@ -1,4 +1,4 @@
-package petclinic.vets;
+package petclinic.actions.vets;
 
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.Text;
