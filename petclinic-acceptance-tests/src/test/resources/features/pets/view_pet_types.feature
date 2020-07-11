@@ -4,7 +4,7 @@ Feature: View all the types of accepted pets
   So that I can know if I can bring in my sick pet
 
   Scenario: Every type of pet that is catered for should be listed
-    Given Carrie is a pet owner
+    Given Carrie is a Pet clinic customer
     When she views the different types of pets that can be treated
     Then she should see at least the following:
       | cat     |

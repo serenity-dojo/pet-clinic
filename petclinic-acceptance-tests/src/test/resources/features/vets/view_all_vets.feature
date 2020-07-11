@@ -5,7 +5,7 @@ Feature: View all the vets
   So that I can know if I need to hire anyone else
 
   Scenario: View the full list of vets
-    Given Peter is a Pet Clinic owner
+    Given Peter is a Pet clinic owner
     When he views the vets in his clinic
     Then he should see the name of each vet in the clinic
 
