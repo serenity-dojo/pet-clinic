@@ -6,18 +6,18 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import petclinic.actions.navigation.Navigate;
+import petclinic.actions.vets.DisplayedVet;
 import petclinic.actions.vets.Vet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
-import static petclinic.actions.vets.VetQuestions.specialitiesFor;
-import static petclinic.actions.vets.VetQuestions.vetNamesDisplayed;
 
 public class VetStepDefinitions {
     @Given("{actor} is a Pet Clinic owner")
@@ -35,9 +35,9 @@ public class VetStepDefinitions {
     }
 
     @Then("{actor} should see the name of each vet in the clinic")
-    public void shouldSeeTheNameAndSpecialitiesOfEachVet(Actor actor) {
+    public void shouldSeeTheNameOfEachVet(Actor actor) {
         actor.should(
-                seeThat("the list of vet names", vetNamesDisplayed(), is(not(empty())))
+                seeThat("the list of vet names", DisplayedVet.names(), is(not(empty())))
         );
     }
 
@@ -46,17 +46,17 @@ public class VetStepDefinitions {
 
         SoftAssertions softly = new SoftAssertions();
         vetSpecialities.forEach(
-                vet -> {
-                    List<String> displayedSpecialities = specialitiesFor(vet.getName()).answeredBy(actor);
-                    softly.assertThat(displayedSpecialities).containsExactlyElementsOf(vet.getSpecialities());
-                }
+            vet -> {
+                Collection<String> displayedSpecialities = DisplayedVet.specialitiesFor(vet.getName()).answeredBy(actor);
+                softly.assertThat(displayedSpecialities).containsExactlyElementsOf(vet.getSpecialities());
+            }
         );
         softly.assertAll();
     }
 
     @DataTableType
     public Vet vetEntry(Map<String, String> entry) {
-        return new Vet(entry.get("Name"),specialitiesIn(entry.get("Specialities")));
+        return new Vet(entry.get("Name"), specialitiesIn(entry.get("Specialities")));
     }
 
     private List<String> specialitiesIn(String specialityList) {

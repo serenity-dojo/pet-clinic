@@ -10,12 +10,6 @@ public class Vet {
         this.name = name;
         this.specialities = specialities;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getSpecialities() {
-        return specialities;
-    }
+    public String getName() { return name; }
+    public List<String> getSpecialities() { return specialities; }
 }
