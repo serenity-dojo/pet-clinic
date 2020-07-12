@@ -20,12 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class VetStepDefinitions {
-    @Given("{actor} is a Pet Clinic owner")
-    public void aPetClinicOwner(Actor actor) {
-        actor.attemptsTo(
-                Navigate.toTheApplicationHomePage()
-        );
-    }
 
     @When("{actor} views the vets in his clinic")
     public void viewsTheVetsInHisClinic(Actor actor) {

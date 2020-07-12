@@ -17,4 +17,7 @@ public class Navigate {
         return Click.on(MenuBar.VETERINARIANS).then(Click.on(MenuBar.ALL_VETERINARIANS));
     }
 
+    public static Performable toThePetTypes() {
+        return Click.on(MenuBar.PET_TYPES);
+    }
 }

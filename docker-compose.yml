@@ -3,7 +3,6 @@ version: '3.7'
 services:
   petclinic-api:
     image: serenitydojo/serenity-petclinic-api
-    container_name: petclinic-api
 
     build:
       context: ./petclinic-api
@@ -13,7 +12,6 @@ services:
 
   petclinic-ui:
     image: serenitydojo/serenity-petclinic-ui
-    container_name: petclinic-ui
     depends_on:
       - petclinic-api
     build:

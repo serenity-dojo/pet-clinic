@@ -10,4 +10,8 @@ public class MenuBar {
     public static Target ALL_VETERINARIANS
             = Target.the("All")
             .locatedBy("//li[a[contains(text(),'Veterinarians')]]//span[contains(text(),'All')]");
+
+    public static Target PET_TYPES
+            = Target.the("Pet Types menu").locatedBy("//span[.='Pet Types']");
+
 }
