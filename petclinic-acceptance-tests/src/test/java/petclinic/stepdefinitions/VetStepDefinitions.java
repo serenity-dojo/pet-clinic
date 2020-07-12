@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import org.assertj.core.api.SoftAssertions;
-import petclinic.actions.navigation.MainMenuItem;
 import petclinic.actions.navigation.Navigate;
 import petclinic.actions.vets.Vet;
 
@@ -31,7 +30,7 @@ public class VetStepDefinitions {
     @When("{actor} views the vets in his clinic")
     public void viewsTheVetsInHisClinic(Actor actor) {
         actor.attemptsTo(
-                Navigate.to(MainMenuItem.ALL_VETERINARIANS)
+                Navigate.toTheVeterinarianList()
         );
     }
 
