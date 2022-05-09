@@ -8,3 +8,8 @@ Feature: View all vets
     Given Peter is a Pet Clinic owner
     When he views the vets in his clinic
     Then he should see the name of each vet in the clinic
+
+  Scenario: Check pet owner contact details
+    Given Peter is a Pet Clinic owner
+    #When he searches for <George Franklin> contact details
+    #Then the owners contact details should be displayed
