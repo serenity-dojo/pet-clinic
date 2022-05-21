@@ -2,6 +2,7 @@ package petclinic;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
+import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -15,8 +16,8 @@ public class SerenityCucumberAdapter {
     @Before
     public void setTheStage() {
         OnStage.setTheStage(new OnlineCast());
-        theRestApiBaseUrl = environmentVariables.optionalProperty("restapi.baseurl")
-                .orElse("http://localhost:9966/petclinic/api");
+        theRestApiBaseUrl = EnvironmentSpecificConfiguration.from(environmentVariables)
+                .getProperty("restapi.service.url");
     }
 
     @ParameterType(".*")

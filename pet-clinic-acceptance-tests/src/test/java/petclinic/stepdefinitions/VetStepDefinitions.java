@@ -7,7 +7,8 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import petclinic.screenplay.navigation.Navigate;
 import petclinic.screenplay.questions.DisplayedVet;
-import petclinic.screenplay.tasks.FindPetType;
+import petclinic.screenplay.tasks.GetAllPetTypes;
+import petclinic.screenplay.tasks.GetPetType;
 
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
@@ -35,16 +36,29 @@ public class VetStepDefinitions {
     }
 
 
-    @When("{actor} checks if cat is available as a Pet Types")
+    @When("{actor} checks available Pet Types")
     public void heChecksIfCatIsAvailableAsAPetTypes(Actor actor) {
         actor.attemptsTo(
-                FindPetType.withId(1)
+                GetAllPetTypes.available()
         );
     }
 
-    @Then("{actor} should see the pet type")
+    @Then("{actor} should see the pet types")
     public void thePetTypeShouldBeDisplayed(Actor actor) {
         actor.should(seeThatResponse("Animal type is returned",
-                response -> response.statusCode(201)));
+                response -> response.statusCode(200)));
+    }
+
+    @Given("{actor} checks if cat can be submitted to the clinic")
+    public void catIsAddedAsAPetType(Actor actor) {
+        actor.attemptsTo(
+                GetPetType.withId(1)
+        );
+    }
+
+    @Then("{actor} should receive a confirmation")
+    public void itShouldBeConfirmed(Actor actor) {
+        actor.should(seeThatResponse("Animal type is returned",
+                response -> response.statusCode(200)));
     }
 }

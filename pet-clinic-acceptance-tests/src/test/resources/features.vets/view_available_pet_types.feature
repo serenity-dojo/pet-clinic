@@ -5,5 +5,9 @@ Feature: View available Pet types
 
   Scenario: Check currently available Pet Types
     Given Peter is a Pet Clinic owner
-    When he checks if cat is available as a Pet Types
-    Then he should see the pet type
+    When he checks available Pet Types
+    Then he should see the pet types
+
+  Scenario: Check if cats can be submitted to the clinic
+    When Peter checks if cat can be submitted to the clinic
+    Then he should receive a confirmation
