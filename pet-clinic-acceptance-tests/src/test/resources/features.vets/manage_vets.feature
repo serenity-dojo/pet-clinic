@@ -1,4 +1,4 @@
-Feature: View all vets
+Feature: Manage Veterinarians Data
 
   As a Pet Clinic Owner
   I want to be able to see all the vets I employ, along with their specialities
@@ -17,10 +17,10 @@ Feature: View all vets
 
   Rule: Vet speciality can be specified
     Employed vets do not need to have any specified speciality.
-    There is a possibility for a vet to specify more than one speciality.
+    There is a possibility for a vet to have more than one speciality.
 
     Scenario: Vet can have a single speciality
-      Given Helen is an employed vet that specializes in radiology
+      Given Helen Leary is an employed vet that specializes in radiology
       When Peter checks her speciality
       Then he should see that her speciality is radiology
 
@@ -35,7 +35,8 @@ Feature: View all vets
       Then he should see that James has no speciality specified
 
   Rule: Vet data can be updated
-    In case of marriage, private decisions vet names should be editable.
+    In case of marriage or some other private matters, vet names should be editable
+    so that the data can be updated.
     If a vet manages to acquire a new speciality it must be added to his profile data.
 
     Scenario: Vet first and last name can be updated

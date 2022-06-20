@@ -1,13 +1,29 @@
-Feature: View available Pet types
-  As a Vet Clinic Owner
-  I want to be able to define different Pet types
-  So that I can have a list of Pets that my clinic can care for
+Feature: View all the types of accepted pets
+  As a pet owner
+  I need to be able to see what types of pet are catered for
+  So that I can know if I can bring in my sick pet
 
-  Scenario: Check currently available Pet Types
-    Given Peter is a Pet Clinic owner
-    When he checks available Pet Types
-    Then he should see the pet types
 
-  Scenario: Check if cats can be submitted to the clinic
-    When Peter checks if cat can be submitted to the clinic
-    Then he should receive a confirmation
+  Scenario: Every type of pet that is catered for should be listed
+    Given Carrie is a Pet clinic customer
+    When she views the different types of pets that can be treated
+    Then she should see at least the following:
+      | cat     |
+      | dog     |
+      | lizard  |
+      | snake   |
+      | bird    |
+      | hamster |
+
+  @challenge3
+  Scenario: New pet types can be added
+    Given the vet clinic caters for the following pet types:
+      | rabbit   |
+      | turtle   |
+      | goldfish |
+    And Carrie is a Pet Clinic customer
+    When she views the different types of pets that can be treated
+    Then she should see at least the following:
+      | rabbit   |
+      | turtle   |
+      | goldfish |
